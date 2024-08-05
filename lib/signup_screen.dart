@@ -28,9 +28,7 @@ class SignupScreen extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       'assets/images/brand-icon.svg',
-                      semanticsLabel: 'My SVG Image',
                       height: 100,
-                      width: double.infinity,
                     ),
                   ],
                 ),
@@ -99,21 +97,9 @@ class SignupScreen extends StatelessWidget {
                           } else if (1 == 1) {
                             return null;
                           } else {
-                            return 'Please enter a valid Email';
+                            return 'Please enter email.';
                           }
                         },
-                        suffixIcon: Icon(
-                          Icons.error_outline,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Please enter email.',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ],
                       ),
                       SizedBox(height: 20),
 
@@ -126,31 +112,28 @@ class SignupScreen extends StatelessWidget {
 
                       ///Password input field
                       CustomTextFieldWidget(
-                        controller: controller.emailEditingController,
+                        controller: controller.passwordEditingController,
                         hintText: 'Password',
-                        obscurePassword: false,
+                        obscurePassword: controller.obscurePassword.value,
                         keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Field is mandatory!";
-                          } else if (1 == 1) {
+                          } else if (value.isNotEmpty) {
                             return null;
                           } else {
-                            return 'Please enter a valid Email';
+                            return 'Please enter password.';
                           }
                         },
-                        suffixIcon: Icon(
-                          Icons.error_outline,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Please enter password.',
-                            style: TextStyle(color: Colors.red),
+                        suffixIcon: InkWell(
+                          onTap: (){
+                            controller.obscurePassword.value=!controller.obscurePassword.value;
+                          },
+                          child: Icon(
+                            controller.obscurePassword.value?Icons.visibility_off:Icons.visibility,
+                            color: AppColors.lightGrey,
                           ),
-                        ],
+                        ),
                       ),
                       SizedBox(height: 20),
 
@@ -164,31 +147,28 @@ class SignupScreen extends StatelessWidget {
 
                       ///Confirm Password input field
                       CustomTextFieldWidget(
-                        controller: controller.emailEditingController,
+                        controller: controller.confirmPasswordEditingController,
                         hintText: 'Confirm Password',
-                        obscurePassword: false,
+                        obscurePassword: controller.obscureConfirmPassword.value,
                         keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Field is mandatory!";
-                          } else if (1 == 1) {
+                          } else if (value.isNotEmpty) {
                             return null;
                           } else {
-                            return 'Please enter a valid Email';
+                            return 'Please enter password.';
                           }
                         },
-                        suffixIcon: Icon(
-                          Icons.error_outline,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Please enter password.',
-                            style: TextStyle(color: Colors.red),
+                        suffixIcon: InkWell(
+                          onTap: (){
+                            controller.obscureConfirmPassword.value=!controller.obscureConfirmPassword.value;
+                          },
+                          child: Icon(
+                            controller.obscureConfirmPassword.value?Icons.visibility_off:Icons.visibility,
+                            color: AppColors.lightGrey,
                           ),
-                        ],
+                        ),
                       ),
                       SizedBox(height: 20),
                       Row(
@@ -254,7 +234,7 @@ class SignupScreen extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text('Sign up with your social network.'),
+                          Text('Sign up with your social network.',style: TextStyle(color: AppColors.lightGrey),),
                         ],
                       ),
 

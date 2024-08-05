@@ -7,6 +7,7 @@ class SingUpController extends GetxController {
   RxBool isGuestLoading = false.obs;
 
   RxBool obscurePassword = true.obs;
+  RxBool obscureConfirmPassword = true.obs;
   RxBool checkBoxVal = false.obs;
 
   var fbBtnElementColor=AppColors.darkGrey.obs;
@@ -18,6 +19,7 @@ class SingUpController extends GetxController {
   var googleBtnBGColor=AppColors.googleBtnBG.obs;
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController passwordEditingController = TextEditingController();
+  TextEditingController confirmPasswordEditingController = TextEditingController();
   // SignInProvider signupProvider = SignInProvider();
   final key = GlobalKey<FormState>();
 
