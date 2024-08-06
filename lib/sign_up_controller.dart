@@ -3,6 +3,9 @@ import 'package:flutter_hft_ai/app_colors.dart';
 import 'package:get/get.dart';
 
 class SingUpController extends GetxController {
+  RxBool isEmailValid = false.obs;
+  RxBool isPassValid = false.obs;
+  RxBool isCPassValid = false.obs;
   RxBool isLoading = false.obs;
   RxBool isGuestLoading = false.obs;
 

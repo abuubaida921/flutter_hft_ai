@@ -9,6 +9,7 @@ class CustomTextFieldWidget extends StatelessWidget {
     required this.hintText,
     required this.validator,
     this.onChanged,
+    this.isValidated,
     required this.obscurePassword,
     this.suffixIcon,
     required this.keyboardType,
@@ -19,6 +20,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   final bool obscurePassword;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final bool? isValidated;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
 
@@ -56,26 +58,26 @@ class CustomTextFieldWidget extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(
-                  color: AppColors.appBaseColor,
+                borderSide:  BorderSide(
+                  color: isValidated == true ? AppColors.formValidColor:AppColors.appBaseColor,
                 ),
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
-                  color: Colors.red,
+                  color: AppColors.formInValidColor,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(
-                  color: AppColors.inputBoxBorderColor,
+                borderSide: BorderSide(
+                  color: isValidated == true ? AppColors.formValidColor:AppColors.inputBoxBorderColor,
                 ),
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
-                  color: Colors.red,
+                  color: AppColors.formInValidColor,
                 ),
               ),
               hintText: hintText,

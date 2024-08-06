@@ -92,12 +92,16 @@ class SignupScreen extends StatelessWidget {
                         hintText: 'Email',
                         obscurePassword: false,
                         keyboardType: TextInputType.text,
+                        isValidated: controller.isEmailValid.value,
                         validator: (value) {
                           if (value!.isEmpty) {
+                            controller.isEmailValid.value=false;
                             return "Field is mandatory!";
-                          } else if (1 == 1) {
+                          } else if (value.isValidEmail()) {
+                            controller.isEmailValid.value=true;
                             return null;
                           } else {
+                            controller.isEmailValid.value=false;
                             return 'Please enter email.';
                           }
                         },
@@ -117,12 +121,16 @@ class SignupScreen extends StatelessWidget {
                         hintText: 'Password',
                         obscurePassword: controller.obscurePassword.value,
                         keyboardType: TextInputType.text,
+                        isValidated: controller.isPassValid.value,
                         validator: (value) {
                           if (value!.isEmpty) {
+                            controller.isPassValid.value=false;
                             return "Field is mandatory!";
                           } else if (value.isNotEmpty) {
+                            controller.isPassValid.value=true;
                             return null;
                           } else {
+                            controller.isPassValid.value=false;
                             return 'Please enter password.';
                           }
                         },
@@ -152,12 +160,16 @@ class SignupScreen extends StatelessWidget {
                         hintText: 'Confirm Password',
                         obscurePassword: controller.obscureConfirmPassword.value,
                         keyboardType: TextInputType.text,
+                        isValidated: controller.isCPassValid.value,
                         validator: (value) {
                           if (value!.isEmpty) {
+                            controller.isCPassValid.value=false;
                             return "Field is mandatory!";
                           } else if (value.isNotEmpty) {
+                            controller.isCPassValid.value=true;
                             return null;
                           } else {
+                            controller.isCPassValid.value=false;
                             return 'Please enter password.';
                           }
                         },
@@ -369,5 +381,13 @@ class SignupScreen extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
   }
 }
