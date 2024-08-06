@@ -227,6 +227,19 @@ class SignupScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 10),
+                        controller.isSignUpLoading.value?
+                        Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          height: 45,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: AppColors.signUpBtnColorBG,
+                            border: Border.all(color: AppColors.signUpBtnColorBorder,width:4)
+                          ),
+                          child: Center(
+                            child: CircularProgressIndicator(color: Colors.white,),
+                          ),
+                        ):
                         InkWell(
                           onTap: (){
                             controller.signupBtnClick();

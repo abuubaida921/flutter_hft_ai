@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hft_ai/signup_screen.dart';
 import 'package:get/get.dart';
 
+import 'app_routes/app_pages.dart';
+
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   if(kIsWeb){
@@ -20,8 +22,15 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Signup Page',
-      home: SignupScreen(),
+      title: 'HFT AI',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      themeMode: ThemeMode.light,
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
     );
   }
 }

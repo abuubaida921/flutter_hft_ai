@@ -1,4 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+
+import 'home_screen.dart';
 
 class AuthenticationHelper {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,6 +17,19 @@ class AuthenticationHelper {
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
+    }
+  }
+
+  //IS LOGGED IN Checking METHOD
+  void isUserLoggedIn() async {
+    try {
+      if (user != null) {
+        Get.to(()=>HomeScreen());
+      }else{
+       print('Login First');
+      }
+    } on FirebaseAuthException catch (e) {
+      return null;
     }
   }
 
