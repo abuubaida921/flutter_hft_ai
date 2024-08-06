@@ -1,4 +1,5 @@
 
+import 'package:flutter_hft_ai/forgot_pass_screen.dart';
 import 'package:flutter_hft_ai/signup_screen.dart';
 import 'package:get/get.dart';
 import '../home_screen.dart';
@@ -27,6 +28,10 @@ class AppPages {
     GetPage(
         name: Routes.SIGNUP,
         page: () => SignupScreen(),
+    ),
+    GetPage(
+        name: Routes.FORGOT_PASS,
+        page: () => ForgotPassScreen(),
     ),
 
   ];

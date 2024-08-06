@@ -175,7 +175,7 @@ class SignInScreen extends StatelessWidget {
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    print('ccc');
+                                    Get.toNamed(Routes.FORGOT_PASS);
                                   },
                                 text: 'Forgot Password',
                                 style:  GoogleFonts.publicSans(

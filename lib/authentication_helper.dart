@@ -20,6 +20,18 @@ class AuthenticationHelper {
     }
   }
 
+  //Reset Pass METHOD
+  Future resetPass(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(
+        email: email,
+      );
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+
   //IS LOGGED IN Checking METHOD
   void isUserLoggedIn() async {
     try {
