@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hft_ai/app_routes/app_routes.dart';
-import 'package:flutter_hft_ai/sign_up_controller.dart';
+import 'package:flutter_hft_ai/sign_in_controller.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,12 +9,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 import 'custom_text_field.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SingUpController());
+    final controller = Get.put(SingInController());
     return Obx(() => Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
@@ -42,7 +40,7 @@ class SignupScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Create Account',
+                          'Welcome Back',
                           style: GoogleFonts.publicSans(
                             color: AppColors.headingColor,
                             fontSize: 28,
@@ -56,7 +54,7 @@ class SignupScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                             TextSpan(
                               text:
-                                  'Sign up now and get free account instant. Already ',
+                                  'Don’t have an account yet? ',
                               style: GoogleFonts.publicSans(
                                   fontSize: 12, color: AppColors.subHeadingColor),
                               children: <TextSpan>[
@@ -64,9 +62,9 @@ class SignupScreen extends StatelessWidget {
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       print('Header Sign in Clicked');
-                                      Get.back();
+                                      Get.toNamed(Routes.SIGNUP);
                                     },
-                                  text: 'Sign in',
+                                  text: 'Register here',
                                   style: GoogleFonts.publicSans(
                                     fontWeight: FontWeight.normal,
                                     color: AppColors.appBaseColor,
@@ -143,43 +141,6 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20),
-
-                        Row(
-                          children: [
-                            Text('Confirm Password',style: GoogleFonts.publicSans(color: AppColors.inputBoxTitleColor),),
-                          ],
-                        ),
-
-                        SizedBox(height: 10),
-
-                        ///Confirm Password input field
-                        CustomTextFieldWidget(
-                          controller: controller.confirmPasswordEditingController,
-                          hintText: 'Confirm Password',
-                          obscurePassword: controller.obscureConfirmPassword.value,
-                          keyboardType: TextInputType.text,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Field is mandatory!";
-                            } else if (value.isNotEmpty && controller.passwordEditingController.text != value) {
-                              return 'Confirm password doesn\'t match.';
-                            }  else if (value.isNotEmpty && value.length>=8 && controller.passwordEditingController.text == value) {
-                              return null;
-                            } else {
-                              return 'Please enter password.';
-                            }
-                          },
-                          suffixIcon: InkWell(
-                            onTap: (){
-                              controller.obscureConfirmPassword.value=!controller.obscureConfirmPassword.value;
-                            },
-                            child: Icon(
-                              controller.obscureConfirmPassword.value?Icons.visibility_off:Icons.visibility,
-                              color: AppColors.lightGrey,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
                         Row(
                           children: [
                             Checkbox(
@@ -197,39 +158,36 @@ class SignupScreen extends StatelessWidget {
                             Text.rich(
                               textAlign: TextAlign.center,
                               TextSpan(
-                                text: 'Terms of Use',
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    print('ccc');
+                                  },
+                                text: 'Remember me',
+                                style:  GoogleFonts.publicSans(
+                                  fontWeight: FontWeight.normal,
+                                  color: AppColors.subHeadingColor,
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            Text.rich(
+                              textAlign: TextAlign.center,
+                              TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    print('ccc');
+                                  },
+                                text: 'Forgot Password',
                                 style:  GoogleFonts.publicSans(
                                   fontWeight: FontWeight.normal,
                                   color: AppColors.linkColor,
                                 ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: ' & ',
-                                      style:  GoogleFonts.publicSans(
-                                        fontWeight: FontWeight.normal,
-                                        color: AppColors.subHeadingColor,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                print('ccc');
-                                              },
-                                            text: 'Privacy Policy',
-                                            style:  GoogleFonts.publicSans(
-                                              fontWeight: FontWeight.normal,
-                                              color: AppColors.linkColor,
-                                            ))
-                                      ]
-                                      // Add a click event if needed
-                                      ),
-                                ],
                               ),
                             ),
                           ],
                         ),
                         SizedBox(height: 10),
-                        controller.isSignUpLoading.value?
+                        controller.isSignInLoading.value?
                         Container(
                           width: MediaQuery.of(context).size.width - 20,
                           height: 45,
@@ -244,7 +202,7 @@ class SignupScreen extends StatelessWidget {
                         ):
                         InkWell(
                           onTap: (){
-                            controller.signupBtnClick();
+                            controller.signInBtnClick();
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width - 20,
@@ -256,7 +214,7 @@ class SignupScreen extends StatelessWidget {
                             ),
                             child: Center(
                               child: Text(
-                                'Sign Up',
+                                'Sign In',
                                 style: GoogleFonts.publicSans(
                                   fontSize: 18,
                                   color: Colors.white,
@@ -269,7 +227,7 @@ class SignupScreen extends StatelessWidget {
 
                         Row(
                           children: [
-                            Text('Sign up with your social network.',style: GoogleFonts.publicSans(color: AppColors.subHeadingColor),),
+                            Text('Sign in with your social network.',style: GoogleFonts.publicSans(color: AppColors.subHeadingColor),),
                           ],
                         ),
 

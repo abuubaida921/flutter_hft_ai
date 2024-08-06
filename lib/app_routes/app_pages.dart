@@ -2,6 +2,7 @@
 import 'package:flutter_hft_ai/signup_screen.dart';
 import 'package:get/get.dart';
 import '../home_screen.dart';
+import '../signin_screen.dart';
 import '../splash_screen.dart';
 import 'app_routes.dart';
 
@@ -19,10 +20,10 @@ class AppPages {
         name: Routes.HOME,
         page: () => HomeScreen(),
     ),
-    // GetPage(
-    //     name: Routes.SIGNIN,
-    //     page: () => LoginScreen(),
-    // ),
+    GetPage(
+        name: Routes.SIGNIN,
+        page: () => SignInScreen(),
+    ),
     GetPage(
         name: Routes.SIGNUP,
         page: () => SignupScreen(),

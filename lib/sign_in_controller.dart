@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hft_ai/app_colors.dart';
+import 'package:flutter_hft_ai/app_routes/app_routes.dart';
 import 'package:flutter_hft_ai/home_screen.dart';
 import 'package:flutter_hft_ai/utils.dart';
 import 'package:get/get.dart';
 
 import 'authentication_helper.dart';
 
-class SingUpController extends GetxController {
-  RxBool isLoading = false.obs;
-  RxBool isGuestLoading = false.obs;
-  RxBool isSignUpLoading = false.obs;
+class SingInController extends GetxController {
+  RxBool isSignInLoading = false.obs;
 
   RxBool obscurePassword = true.obs;
-  RxBool obscureConfirmPassword = true.obs;
   RxBool checkBoxVal = false.obs;
 
   var fbBtnElementColor = AppColors.subHeadingColor.obs;
@@ -22,11 +20,10 @@ class SingUpController extends GetxController {
   var googleBtnElementColor = AppColors.subHeadingColor.obs;
   var googleBtnBorderColor = AppColors.googleBtnBorder.obs;
   var googleBtnBGColor = AppColors.googleBtnBG.obs;
+
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController passwordEditingController = TextEditingController();
-  TextEditingController confirmPasswordEditingController =
-      TextEditingController();
-  // SignInProvider signupProvider = SignInProvider();
+
   final key = GlobalKey<FormState>();
 
   void continueWithGoogleBtnClick() {
@@ -53,30 +50,24 @@ class SingUpController extends GetxController {
     }
   }
 
-  void signupBtnClick() {
+  void signInBtnClick() {
     if (key.currentState!.validate()) {
-      if (checkBoxVal.value) {
-        isSignUpLoading.value=true;
-        AuthenticationHelper()
-            .signUp( emailEditingController.text.trim(), passwordEditingController.text.trim())
-            .then((result) {
-          isSignUpLoading.value=false;
-          if (result == null) {
-            Get.to(()=>HomeScreen());
-            Utils.showSuccessMessage('Registration Success');
-          } else {
-            Utils.showFailedMessage(result);
-          }
-        });
-      } else {
-        Utils.showFailedMessage('Please accept terms and policy');
-      }
+      isSignInLoading.value = true;
+      AuthenticationHelper()
+          .signIn(emailEditingController.text.trim(),
+              passwordEditingController.text.trim())
+          .then((result) {
+        isSignInLoading.value = false;
+        if (result == null) {
+          Get.toNamed(Routes.HOME);
+          Utils.showSuccessMessage('Login Success');
+        } else {
+          Utils.showFailedMessage(result);
+        }
+      });
     } else {
       Utils.showFailedMessage('Please check necessary field');
     }
-    // Get username and password from the user.Pass the data to
-// helper method
-
   }
 
   void logout() {

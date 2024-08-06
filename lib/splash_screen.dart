@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       Timer(
           const Duration(seconds: 2),
-              () =>Get.offAllNamed(Routes.SIGNUP)
+              () =>Get.offAllNamed(Routes.SIGNIN)
       );
     }
     super.initState();
