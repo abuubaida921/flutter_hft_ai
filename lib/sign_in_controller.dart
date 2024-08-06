@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hft_ai/app_colors.dart';
 import 'package:flutter_hft_ai/app_routes/app_routes.dart';
-import 'package:flutter_hft_ai/home_screen.dart';
 import 'package:flutter_hft_ai/utils.dart';
 import 'package:get/get.dart';
 
