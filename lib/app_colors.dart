@@ -3,24 +3,34 @@ import 'package:flutter/material.dart';
 class AppColors {
 
   static const white = Color(0xFFFFFFFF);
+  static const headingColor = Color(0xFF1e293b);
+  static const subHeadingColor = Color(0xFF64748b);
+  static const inputBoxTitleColor = Color(0xFF64748b);
+  static const inputBoxBorderColor = Color(0xFFe2e8f0);
+  static const linkColor = Color(0xFF8b3dff);
+  static const linkColorHover = Color(0xFF6f31cc);
+  static const signUpBtnColorBG = Color(0xff8b3dff);
+  static const signUpBtnColorBorder = Color(0xff8b3dff);
   static const darkGrey = Color(0xFF4D4D4D);
   static const lightGrey = Color(0xFF707070);
   static const socialBtnBG = Color(0xfff1f5f9);
   static const socialBtnBorder = Color(0xffe2e8f0);
   static const fbBtnBG = Color(0xfff1f5f9);
   static const fbBtnBorder = Color(0xffe2e8f0);
-  static const fbBtnClickedBG = Color(0xff0021ff);
-  static const fbBtnClickedBorder = Color(0xff273875);
+  static const fbBtnClickedBG = Color(0xff1877f2);
+  static const fbBtnClickedBorder = Color(0xff1877f2);
   static const googleBtnBG = Color(0xfff1f5f9);
   static const googleBtnBorder = Color(0xffe2e8f0);
-  static const googleBtnClickedBG = Color(0xfff80000);
-  static const googleBtnClickedBorder = Color(0xffa13636);
+  static const googleBtnClickedBG = Color(0xffea4335);
+  static const googleBtnClickedBorder = Color(0xffea4335);
   static const btnBG = Color(0xff8b3dff);
   static const btnBorder = Color(0xff8b3dff);
   static const offWhite = Color(0xFFEEF2FA);
   static const lightBlue = Color(0xFF3D72CB);
-  static const appBaseColor = Color(0xff8b3dff);
+  static const appBaseColor = Color(0xFF8b3dff);
   static const focusedColor = Color(0xff8b3dff);
+  static const formValidColor = Color(0xff008008);
+  static const formInValidColor = Color(0xffdb1436);
 
 
   // --bs-blue: #8b3dff;

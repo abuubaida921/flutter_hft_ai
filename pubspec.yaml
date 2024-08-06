@@ -38,6 +38,7 @@ dependencies:
   font_awesome_flutter:
   flutter_svg:
   get:
+  google_fonts:
 
 dev_dependencies:
   flutter_test:

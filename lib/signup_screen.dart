@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hft_ai/sign_up_controller.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 import 'custom_text_field.dart';
@@ -39,8 +40,8 @@ class SignupScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Create Account',
-                        style: TextStyle(
-                          color: AppColors.darkGrey,
+                        style: GoogleFonts.publicSans(
+                          color: AppColors.headingColor,
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                         ),
@@ -53,8 +54,8 @@ class SignupScreen extends StatelessWidget {
                           TextSpan(
                             text:
                                 'Sign up now and get free account instant. Already ',
-                            style: const TextStyle(
-                                fontSize: 12, color: Colors.grey),
+                            style: GoogleFonts.publicSans(
+                                fontSize: 12, color: AppColors.subHeadingColor),
                             children: <TextSpan>[
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
@@ -62,8 +63,8 @@ class SignupScreen extends StatelessWidget {
                                     print('Header Sign in Clicked');
                                   },
                                 text: 'Sign in',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                style: GoogleFonts.publicSans(
+                                  fontWeight: FontWeight.normal,
                                   color: AppColors.appBaseColor,
                                 ),
                                 // Add a click event if needed
@@ -76,10 +77,10 @@ class SignupScreen extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text('Email '),
+                          Text('Email ',style: GoogleFonts.publicSans(color: AppColors.inputBoxTitleColor),),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red),
+                            style: GoogleFonts.publicSans(color: Colors.red),
                           ),
                         ],
                       ),
@@ -105,7 +106,7 @@ class SignupScreen extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text('Password '),
+                          Text('Password ',style: GoogleFonts.publicSans(color: AppColors.inputBoxTitleColor),),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -139,7 +140,7 @@ class SignupScreen extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text('Confirm Password'),
+                          Text('Confirm Password',style: GoogleFonts.publicSans(color: AppColors.inputBoxTitleColor),),
                         ],
                       ),
 
@@ -170,28 +171,35 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Row(
                         children: [
                           Checkbox(
                               value: controller.checkBoxVal.value,
                               onChanged: (newVal) {
                                 controller.checkBoxVal.value = newVal!;
-                              }),
+                              },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            side: MaterialStateBorderSide.resolveWith(
+                                  (states) => BorderSide(width: 1.0, color: AppColors.inputBoxBorderColor),
+                            ),
+                              ),
                           Text.rich(
                             textAlign: TextAlign.center,
                             TextSpan(
                               text: 'Terms of Use',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.appBaseColor,
+                              style:  GoogleFonts.publicSans(
+                                fontWeight: FontWeight.normal,
+                                color: AppColors.linkColor,
                               ),
                               children: <TextSpan>[
                                 TextSpan(
                                     text: ' & ',
-                                    style: const TextStyle(
+                                    style:  GoogleFonts.publicSans(
                                       fontWeight: FontWeight.normal,
-                                      color: Colors.grey,
+                                      color: AppColors.subHeadingColor,
                                     ),
                                     children: [
                                       TextSpan(
@@ -200,9 +208,9 @@ class SignupScreen extends StatelessWidget {
                                               print('ccc');
                                             },
                                           text: 'Privacy Policy',
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.appBaseColor,
+                                          style:  GoogleFonts.publicSans(
+                                            fontWeight: FontWeight.normal,
+                                            color: AppColors.linkColor,
                                           ))
                                     ]
                                     // Add a click event if needed
@@ -212,20 +220,26 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 20,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: AppColors.appBaseColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: (){
+                          controller.signupBtnClick();
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          height: 45,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: AppColors.signUpBtnColorBG,
+                            border: Border.all(color: AppColors.signUpBtnColorBorder,width:4)
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Sign Up',
+                              style: GoogleFonts.publicSans(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
@@ -234,7 +248,7 @@ class SignupScreen extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text('Sign up with your social network.',style: TextStyle(color: AppColors.lightGrey),),
+                          Text('Sign up with your social network.',style: GoogleFonts.publicSans(color: AppColors.subHeadingColor),),
                         ],
                       ),
 
@@ -255,15 +269,17 @@ class SignupScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                'assets/images/brand-icon.svg',
-                                height: 40,
-                                width: 40,
+                                'assets/images/icon-google_1.svg',
+                                height: 20,
+                                width: 20,
                                 color: controller.googleBtnElementColor.value,
                               ),
+                              SizedBox(width: 10,),
                               Text(
                                 'Continue with Google',
-                                style: TextStyle(
+                                style: GoogleFonts.publicSans(
                                   fontSize: 18,
+                                  fontWeight: FontWeight.w600,
                                   color: controller.googleBtnElementColor.value,
                                 ),
                               ),
@@ -289,15 +305,17 @@ class SignupScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                'assets/images/brand-icon.svg',
-                                height: 40,
-                                width: 40,
+                                'assets/images/icon-facebook.svg',
+                                height: 20,
+                                width: 20,
                                 color: controller.fbBtnElementColor.value,
                               ),
+                              SizedBox(width: 10,),
                               Text(
                                 'Continue with Facebook',
-                                style: TextStyle(
+                                style: GoogleFonts.publicSans(
                                   fontSize: 18,
+                                  fontWeight: FontWeight.w600,
                                   color: controller.fbBtnElementColor.value,
                                 ),
                               ),
@@ -313,28 +331,28 @@ class SignupScreen extends StatelessWidget {
                           TextSpan(
                             text:
                                 'Copyright © ',
-                            style: const TextStyle(
-                                fontSize: 12, color: Colors.grey),
+                            style:  GoogleFonts.publicSans(
+                                fontSize: 12, color: AppColors.subHeadingColor),
                             children: [
                               TextSpan(
                                   text: 'Block Bootstrap 5 Theme',
-                                  style: const TextStyle(
+                                  style:  GoogleFonts.publicSans(
                                     fontWeight: FontWeight.normal,
-                                    color: AppColors.appBaseColor,
+                                    color: AppColors.linkColor,
                                   ),
                                   children: [
                                     TextSpan(
                                         text: ' | Designed by ',
-                                        style: const TextStyle(
+                                        style:  GoogleFonts.publicSans(
                                           fontWeight: FontWeight.normal,
-                                          color: AppColors.lightGrey,
+                                          color: AppColors.subHeadingColor,
                                         ),
                                         children: [
                                           TextSpan(
                                             text: 'CodesCandy',
-                                            style: const TextStyle(
+                                            style:  GoogleFonts.publicSans(
                                               fontWeight: FontWeight.normal,
-                                              color: AppColors.appBaseColor,
+                                              color: AppColors.linkColor,
                                             ),
                                             // Add a click event if needed
                                           ),

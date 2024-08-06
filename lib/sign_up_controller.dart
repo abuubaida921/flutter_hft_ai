@@ -10,11 +10,11 @@ class SingUpController extends GetxController {
   RxBool obscureConfirmPassword = true.obs;
   RxBool checkBoxVal = false.obs;
 
-  var fbBtnElementColor=AppColors.darkGrey.obs;
+  var fbBtnElementColor=AppColors.subHeadingColor.obs;
   var fbBtnBorderColor=AppColors.fbBtnBorder.obs;
   var fbBtnBGColor=AppColors.fbBtnBG.obs;
 
-  var googleBtnElementColor=AppColors.darkGrey.obs;
+  var googleBtnElementColor=AppColors.subHeadingColor.obs;
   var googleBtnBorderColor=AppColors.googleBtnBorder.obs;
   var googleBtnBGColor=AppColors.googleBtnBG.obs;
   TextEditingController emailEditingController = TextEditingController();
@@ -24,25 +24,27 @@ class SingUpController extends GetxController {
   final key = GlobalKey<FormState>();
 
   void continueWithGoogleBtnClick() {
-    if(googleBtnElementColor.value== AppColors.darkGrey){
+    if(googleBtnElementColor.value== AppColors.subHeadingColor){
       googleBtnElementColor.value = AppColors.white;
       googleBtnBorderColor.value = AppColors.googleBtnClickedBorder;
       googleBtnBGColor.value = AppColors.googleBtnClickedBG;
     }else {
-      googleBtnElementColor.value = AppColors.darkGrey;
+      googleBtnElementColor.value = AppColors.subHeadingColor;
       googleBtnBorderColor.value = AppColors.googleBtnBorder;
       googleBtnBGColor.value = AppColors.googleBtnBG;
     }
   }
   void continueWithFbBtnClick() {
-    if(fbBtnElementColor.value== AppColors.darkGrey){
+    if(fbBtnElementColor.value== AppColors.subHeadingColor){
       fbBtnElementColor.value = AppColors.white;
       fbBtnBorderColor.value = AppColors.fbBtnClickedBorder;
       fbBtnBGColor.value = AppColors.fbBtnClickedBG;
     }else {
-      fbBtnElementColor.value = AppColors.darkGrey;
+      fbBtnElementColor.value = AppColors.subHeadingColor;
       fbBtnBorderColor.value = AppColors.fbBtnBorder;
       fbBtnBGColor.value = AppColors.fbBtnBG;
     }
   }
+
+  void signupBtnClick() {}
 }
