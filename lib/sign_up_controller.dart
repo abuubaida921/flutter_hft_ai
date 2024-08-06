@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hft_ai/app_colors.dart';
+import 'package:flutter_hft_ai/utils.dart';
 import 'package:get/get.dart';
 
+import 'authentication_helper.dart';
+
 class SingUpController extends GetxController {
-  RxBool isEmailValid = false.obs;
-  RxBool isPassValid = false.obs;
-  RxBool isCPassValid = false.obs;
   RxBool isLoading = false.obs;
   RxBool isGuestLoading = false.obs;
 
@@ -49,5 +49,33 @@ class SingUpController extends GetxController {
     }
   }
 
-  void signupBtnClick() {}
+  void signupBtnClick() {
+    if(key.currentState!.validate()){
+    if(checkBoxVal.value){
+      Utils.showSuccessMessage('all ok');
+    }else{
+      Utils.showFailedMessage('Please accept terms and policy');
+    }
+    }else{
+      Utils.showFailedMessage('not ok');
+    }
+      // Get username and password from the user.Pass the data to
+// helper method
+
+      // AuthenticationHelper()
+      //     .signUp( email, password)
+      //     .then((result) {
+      //   if (result == null) {
+      //     Navigator.pushReplacement(context,
+      //         MaterialPageRoute(builder: (context) => Home()));
+      //   } else {
+      //     Scaffold.of(context).showSnackBar(SnackBar(
+      //       content: Text(
+      //         result,
+      //         style: TextStyle(fontSize: 16),
+      //       ),
+      //     ));
+      //   }
+      // });
+  }
 }
