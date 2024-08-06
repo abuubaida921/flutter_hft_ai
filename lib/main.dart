@@ -1,35 +1,36 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_hft_ai/app_colors.dart';
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
+import 'package:webview_flutter_web/webview_flutter_web.dart';
 
-import 'app_routes/app_pages.dart';
-
-Future main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  if(kIsWeb){
-
-  }else {
-    await Firebase.initializeApp();
-  }
-  runApp(const SignupPage());
+void main() {
+  WebViewPlatform.instance = WebWebViewPlatform();
+  runApp(const MaterialApp(debugShowCheckedModeBanner:false,home: _WebViewExample()));
 }
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class _WebViewExample extends StatefulWidget {
+  const _WebViewExample();
+
+  @override
+  _WebViewExampleState createState() => _WebViewExampleState();
+}
+
+class _WebViewExampleState extends State<_WebViewExample> {
+  final PlatformWebViewController _controller = PlatformWebViewController(
+    const PlatformWebViewControllerCreationParams(),
+  )..loadRequest(
+      LoadRequestParams(
+        uri: Uri.parse('https://block.codescandy.com/signup-v2.html'),
+      ),
+    );
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'HFT AI',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      themeMode: ThemeMode.light,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+    return Scaffold(
+      backgroundColor: AppColors.appBaseColor,
+      body: PlatformWebViewWidget(
+        PlatformWebViewWidgetCreationParams(controller: _controller),
+      ).build(context),
     );
   }
 }
