@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "876404951547",
+    "project_id": "hft-ai",
+    "storage_bucket": "hft-ai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876404951547:android:4e938417f30483415be35e",
+        "android_client_info": {
+          "package_name": "com.abuubaida921.flutter_hft_ai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_nMu6uOMMCJVemit8rLUcFmxfKvYQAsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
