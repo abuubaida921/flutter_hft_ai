@@ -9,7 +9,9 @@ class HomeController extends GetxController {
   RxBool isLoading = false.obs;
 
   void logout() {
+    isLoading(true);
     AuthenticationHelper().signOut();
+    isLoading(true);
     Get.offAllNamed(Routes.SIGNIN);
     Utils.showSuccessMessage('Logout Success');
   }
